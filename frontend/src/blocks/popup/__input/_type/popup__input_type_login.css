@@ -1,0 +1,17 @@
+.popup__input_type_login{
+  margin: 0;
+  padding: 0;
+  border-bottom: 2px solid rgba(204, 204, 204, 1);
+  background-color: black;
+  padding-bottom: 5px;
+  color: #CCCCCC;
+
+  
+}
+.popup__input_type_login:nth-child(2){
+margin-top: 50px;
+}
+
+.popup__input_type_login:nth-child(3){
+  margin-top: 25px;
+}

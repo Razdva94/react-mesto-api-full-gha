@@ -1,0 +1,8 @@
+.element__text-container {
+  padding-top: 22px;
+  padding-bottom: 22px;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+}

@@ -1,0 +1,21 @@
+.popup__text-error{
+top:calc(100% + 5px);
+margin-bottom: auto;
+font-size: 12px;
+line-height: 15px;
+letter-spacing: 0em;
+text-align: left;
+color:#FF0000;
+margin-left: 36px;
+position: absolute;
+}
+.popup__text-error:nth-child(2){
+margin-bottom: 0;
+margin-top: auto;
+}
+ 
+@media screen and (max-width: 528px) {
+  .popup__text-error{
+    margin-left: 20px;
+  }
+}

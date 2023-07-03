@@ -1,0 +1,8 @@
+.popup__input-error {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  left: 36px;
+  top: 145px;
+  min-height: 67px;
+}

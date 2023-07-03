@@ -1,0 +1,15 @@
+.header__text {
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: right;
+  color: white;
+  margin: auto 0 auto auto;
+  transition: opacity 1s;
+}
+.header__text:hover {
+  opacity: .6;
+  cursor: pointer;
+}

@@ -1,0 +1,10 @@
+.element__bin{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  transition: opacity 1s;
+}
+.element__bin:hover{
+  opacity: .5;
+}

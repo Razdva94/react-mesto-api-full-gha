@@ -4,7 +4,7 @@ const NotFound = require('./NotFoundError');
 exports.auth = (req, res, next) => {
   const token = req.cookies.jwt;
   if (!token) {
-    next(new NotFound('Необходима авторизация'));
+    next(new NotFound('Необходима авторизаци'));
     return;
   }
   let payload;
@@ -15,7 +15,7 @@ exports.auth = (req, res, next) => {
       NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
     );
   } catch (err) {
-    next(new NotFound('Необходима авторизация'));
+    next(new NotFound('Необходима авторизаця'));
     return;
   }
   req.user = payload;

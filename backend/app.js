@@ -32,7 +32,6 @@ mongoose
     console.error('Error connecting to MongoDB:', error);
   });
 app.use(requestLogger);
-app.options('*', cors());
 app.options('*', (req, res) => {
   res.header('Access-Control-Allow-Origin', 'http://razdva.nomoreparties.sbs');
   res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');

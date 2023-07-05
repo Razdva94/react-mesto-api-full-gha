@@ -33,6 +33,12 @@ mongoose
   });
 app.use(requestLogger);
 app.options('*', cors());
+app.options('*', (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+});
 app.use(
   cors({
     origin: 'http://razdva.nomoreparties.sbs',

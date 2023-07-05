@@ -56,6 +56,7 @@ app.get('/crash-test', () => {
 });
 app.post(
   '/signin',
+  cors(),
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       password: Joi.string().required(),
@@ -67,6 +68,7 @@ app.post(
 
 app.post(
   '/signup',
+  cors(),
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       email: Joi.string().email().required(),

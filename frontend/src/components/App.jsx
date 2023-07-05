@@ -146,6 +146,7 @@ function App() {
           navigate("/");
         })
         .catch((err) => {
+          navigate("/sign-in");
           console.log(err);
         });
     }

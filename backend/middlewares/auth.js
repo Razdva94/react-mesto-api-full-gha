@@ -10,6 +10,7 @@ exports.auth = (req, res, next) => {
   let payload;
   try {
     const { NODE_ENV, JWT_SECRET } = process.env;
+    console.log(NODE_ENV, JWT_SECRET);
     payload = jwt.verify(
       token,
       NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',

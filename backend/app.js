@@ -32,6 +32,7 @@ mongoose
     console.error('Error connecting to MongoDB:', error);
   });
 app.use(requestLogger);
+app.options('*', cors());
 app.use(
   cors({
     origin: 'http://razdva.nomoreparties.sbs',

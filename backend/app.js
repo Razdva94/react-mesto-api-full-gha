@@ -41,6 +41,7 @@ app.options('*', (req, res) => {
 });
 app.use(
   cors({
+    header: 'origin',
     origin: 'http://razdva.nomoreparties.sbs',
     credentials: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',

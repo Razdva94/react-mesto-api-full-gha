@@ -33,21 +33,23 @@ mongoose
   });
 app.use(requestLogger);
 app.options('*', cors());
-app.use(cors());
-// app.options('*', cors());
-// app.options('*', (req, res) => {
-//   res.header('Access-Control-Allow-Origin', 'http://razdva.nomoreparties.sbs');
-//   res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-//   res.header('Access-Control-Allow-Headers', 'Content-Type');
-//   res.header('Access-Control-Allow-Credentials', true);
-//   res.sendStatus(200);
-// });
-// app.use(
-//   cors({
-//     origin: 'http://razdva.nomoreparties.sbs',
-//     credentials: true,
-//   }),
-// );
+app.options('*', (req, res) => {
+  res.header('Access-Control-Allow-Origin', 'http://razdva.nomoreparties.sbs');
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.sendStatus(200);
+});
+app.use(
+  cors({
+    origin: 'http://razdva.nomoreparties.sbs',
+    credentials: true,
+  }),
+);
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');

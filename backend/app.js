@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
-const cors = require('cors');
+// const cors = require('cors');
 const {
   celebrate, Segments, Joi, errors,
 } = require('celebrate');
@@ -32,23 +32,11 @@ mongoose
     console.error('Error connecting to MongoDB:', error);
   });
 app.use(requestLogger);
-app.options('*', (req, res) => {
-  res.header('Access-Control-Allow-Origin', 'http://razdva.nomoreparties.sbs');
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.header('Access-Control-Allow-Credentials', true);
-  res.sendStatus(200);
-});
-app.use(
-  cors({
-    header: 'origin',
-    origin: 'http://razdva.nomoreparties.sbs',
-    credentials: true,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  }),
-);
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
   next();
 });
 app.get('/crash-test', () => {

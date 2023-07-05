@@ -60,7 +60,6 @@ exports.createUser = async (req, res, next) => {
     });
 
     const savedUser = await user.save();
-    res.header('Access-Control-Allow-Origin', '*');
     res.status(201).json(savedUser);
   } catch (error) {
     if (
@@ -152,7 +151,6 @@ exports.login = async (req, res, next) => {
         httpOnly: true,
         SameSite: true,
       });
-      res.header('Access-Control-Allow-Origin', '*');
       res.send({ data: user.toJSON() });
     } else {
       next(new NotFound('Неверный пароль.'));

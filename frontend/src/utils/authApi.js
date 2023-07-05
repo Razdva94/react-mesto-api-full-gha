@@ -61,7 +61,7 @@ class AuthApi {
   }
 }
 const authApi = new AuthApi({
-  baseUrl: "http://localhost:3000",
+  baseUrl: "http://api.razdva.nomoreparties.sbs/",
   headers: {
     "Content-Type": "application/json",
   },

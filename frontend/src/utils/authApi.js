@@ -26,12 +26,20 @@ class AuthApi {
     });
   }
 
-  getValidation() {
+  getToSignout(){
+    return this._request(`${this._url}/signout`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
+  getUser() {
     return this._request(`${this._url}/users/me`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("token")}`,
       },
     });
   }
@@ -44,11 +52,16 @@ class AuthApi {
   }
 
   _request(url, options) {
-    return fetch(url, options).then((res) => this._checkResponse(res));
+    const updatedOptions = {
+      ...options,
+      credentials: "include",
+    };
+
+    return fetch(url, updatedOptions).then((res) => this._checkResponse(res));
   }
 }
 const authApi = new AuthApi({
-  baseUrl: "https://auth.nomoreparties.co",
+  baseUrl: "http://localhost:3000",
   headers: {
     "Content-Type": "application/json",
   },

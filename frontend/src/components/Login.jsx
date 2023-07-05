@@ -6,7 +6,7 @@ import authApi from "../utils/authApi";
 import InfoTooltip from "./InfoTooltip";
 import usePopupClose from "../hooks/usePopupClose";
 
-function Login({ handleLoggedIn }) {
+function Login({ handleLoggedIn, getProfileAndCardsInfo }) {
   const navigate = useNavigate();
   const { values, handleChange } = useForm();
   const [approvedPopup, setApprovedPopup] = React.useState(false);
@@ -16,6 +16,7 @@ function Login({ handleLoggedIn }) {
     if (approvedPopup) {
       setApprovedPopup(false);
       handleLoggedIn(true);
+      getProfileAndCardsInfo();
       navigate("/");
     }
     if (regectedPopup) {
@@ -29,8 +30,8 @@ function Login({ handleLoggedIn }) {
     e.preventDefault();
     authApi
       .postToSignin(values)
-      .then((res) => {
-        localStorage.setItem("token", res.token);
+      .then(() => {
+        localStorage.setItem("validated", true);
         setApprovedPopup(true);
       })
       .catch((err) => {

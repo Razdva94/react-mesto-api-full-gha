@@ -1,15 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import headerLogo from "../images/Vector.svg";
+import authApi from "../utils/authApi";
 
 function Header({ isAuthorized, register, login, email }) {
   const navigate = useNavigate();
   function handleClickEnter() {
-    navigate("/sign-in", { replace: true });
-    localStorage.clear();
+    navigate("sign-in", { replace: true });
   }
   function handleClickRegister() {
     navigate("/sign-up", { replace: true });
+  }
+  function handleExit() {
+    authApi.getToSignout().then(() => {
+      localStorage.clear();
+      navigate("sign-in");
+    });
   }
   return (
     <header className="header">
@@ -26,7 +32,10 @@ function Header({ isAuthorized, register, login, email }) {
       )}
       {isAuthorized && <p className="header__email">{email}</p>}
       {isAuthorized && (
-        <p className="header__text header__text_type_email" onClick={handleClickEnter}>
+        <p
+          className="header__text header__text_type_email"
+          onClick={handleExit}
+        >
           Выйти
         </p>
       )}

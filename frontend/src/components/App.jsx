@@ -1,6 +1,6 @@
 import "../pages/index.css";
 import React from "react";
-import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -24,7 +24,7 @@ function App() {
     Promise.all([api.getInitialProfile(), api.getInitialCards()])
       .then(([userData, cardsData]) => {
         setCurrentUser(userData);
-        setCards(cardsData);
+        setCards(cardsData.reverse());
       })
       .catch((err) => {
         console.log(err);
@@ -43,7 +43,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
@@ -137,16 +137,18 @@ function App() {
   }
   const [email, setEmail] = React.useState("");
   React.useEffect(() => {
-    authApi
-      .getValidation()
-      .then((res) => {
-        setEmail(res.data.email);
-        setLoggedIn(true);
-        navigate("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (localStorage.getItem("validated") === "true") {
+      authApi
+        .getUser()
+        .then((res) => {
+          setEmail(res.email);
+          setLoggedIn(true);
+          navigate("/");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [navigate]);
 
   React.useEffect(() => {
@@ -158,7 +160,12 @@ function App() {
       <Route path="/sign-up" element={<Register />} />
       <Route
         path="/sign-in"
-        element={<Login handleLoggedIn={handleLoggedIn} />}
+        element={(
+          <Login
+            handleLoggedIn={handleLoggedIn}
+            getProfileAndCardsInfo={getProfileAndCardsInfo}
+          />
+        )}
       />
       <Route
         path="/"

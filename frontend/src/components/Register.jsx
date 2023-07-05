@@ -27,7 +27,8 @@ function Register() {
     e.preventDefault();
     authApi
       .postToSignup(values)
-      .then(() => {
+      .then((res) => {
+        console.log(res);
         setApprovedPopup(true);
       })
       .catch((err) => {

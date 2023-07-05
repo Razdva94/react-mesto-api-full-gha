@@ -7,6 +7,18 @@ const user = require('../controllers/users');
 
 router.get('/users', user.getUsers);
 
+router.get('/users/me', user.getUser);
+
+router.get(
+  '/users/:userId',
+  celebrate({
+    [Segments.PARAMS]: {
+      userId: Joi.string().hex().length(24).required(),
+    },
+  }),
+  user.getUserById,
+);
+
 router.patch(
   '/users/me',
   celebrate({
@@ -18,8 +30,6 @@ router.patch(
   user.updateUser,
 );
 
-router.get('/users/me', user.getUser);
-
 router.patch(
   '/users/me/avatar',
   celebrate({
@@ -30,16 +40,6 @@ router.patch(
     }),
   }),
   user.updateAvatar,
-);
-
-router.get(
-  '/users/:userId',
-  celebrate({
-    [Segments.PARAMS]: {
-      userId: Joi.string().hex().length(24).required(),
-    },
-  }),
-  user.getUserById,
 );
 
 module.exports = router;

@@ -2,12 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const {
   celebrate, Segments, Joi, errors,
 } = require('celebrate');
 const cardRoutes = require('./routes/card');
 const userRoutes = require('./routes/user');
-const { login, createUser } = require('./controllers/users');
+const { login, createUser, logout } = require('./controllers/users');
 const { auth } = require('./middlewares/auth');
 const { errorHandler } = require('./middlewares/error');
 const urlPattern = require('./middlewares/urlPattern');
@@ -31,6 +32,12 @@ mongoose
     console.error('Error connecting to MongoDB:', error);
   });
 app.use(requestLogger);
+app.use(
+  cors({
+    origin: 'http://localhost:3001',
+    credentials: true,
+  }),
+);
 app.post(
   '/signin',
   celebrate({
@@ -55,7 +62,9 @@ app.post(
   }),
   createUser,
 );
+
 app.use(auth);
+app.get('/signout', logout);
 app.use('/', cardRoutes);
 app.use('/', userRoutes);
 app.use((req, res, next) => {

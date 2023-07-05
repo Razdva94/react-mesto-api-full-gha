@@ -6,6 +6,19 @@ const WrongId = require('../middlewares/WrongIdError');
 const NotFound = require('../middlewares/NotFoundError');
 const SameUserError = require('../middlewares/SameUserError');
 
+exports.getUser = async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+    const user = await User.findById(userId);
+    if (!user) {
+      next(new WrongId('Пользователь по указанному _id не найден.'));
+      return;
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
 exports.getUsers = async (req, res, next) => {
   try {
     const users = await User.find();
@@ -14,7 +27,6 @@ exports.getUsers = async (req, res, next) => {
     next(error);
   }
 };
-
 exports.getUserById = async (req, res, next) => {
   try {
     const { userId } = req.params;
@@ -138,7 +150,7 @@ exports.login = async (req, res, next) => {
       res.cookie('jwt', jwtToken, {
         maxAge: 3600000,
         httpOnly: true,
-        sameSite: true,
+        SameSite: true,
       });
       res.send({ data: user.toJSON() });
     } else {
@@ -149,15 +161,10 @@ exports.login = async (req, res, next) => {
   }
 };
 
-exports.getUser = async (req, res, next) => {
+exports.logout = (req, res, next) => {
   try {
-    const userId = req.user._id;
-    const user = await User.findById(userId);
-    if (!user) {
-      next(new WrongId('Пользователь по указанному _id не найден.'));
-      return;
-    }
-    res.status(200).json(user);
+    res.cookie('jwt', null, { maxAge: 0 });
+    res.status(200).json(req.user);
   } catch (error) {
     next(error);
   }

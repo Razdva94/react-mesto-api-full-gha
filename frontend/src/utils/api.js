@@ -76,13 +76,18 @@ class Api {
   }
 
   _request(url, options) {
-    return fetch(url, options).then((res) => this._checkResponse(res));
+    const updatedOptions = {
+      ...options,
+      credentials: "include",
+    };
+
+    return fetch(url, updatedOptions).then((res) => this._checkResponse(res));
   }
 }
 const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-62",
+  baseUrl: "http://localhost:3000",
   headers: {
-    authorization: "0d8f1e17-52e4-4e28-9682-deb39acca963",
+    // authorization: "0d8f1e17-52e4-4e28-9682-deb39acca963",
     "Content-Type": "application/json",
   },
 });

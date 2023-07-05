@@ -36,6 +36,7 @@ app.use(
   cors({
     origin: 'http://razdva.nomoreparties.sbs',
     credentials: 'true',
+    header: 'Access-Control-Allow-Origin',
   }),
 );
 app.get('/crash-test', () => {

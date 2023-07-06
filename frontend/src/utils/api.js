@@ -87,7 +87,6 @@ class Api {
 const api = new Api({
   baseUrl: "http://api.razdva.nomoreparties.sbs",
   headers: {
-    // authorization: "0d8f1e17-52e4-4e28-9682-deb39acca963",
     "Content-Type": "application/json",
   },
 });

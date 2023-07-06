@@ -146,6 +146,7 @@ function App() {
           navigate("/");
         })
         .catch((err) => {
+          localStorage.clear();
           navigate("/sign-in");
           console.log(err);
         });

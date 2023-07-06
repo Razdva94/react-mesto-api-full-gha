@@ -32,14 +32,14 @@ mongoose
     console.error('Error connecting to MongoDB:', error);
   });
 app.use(requestLogger);
-// app.use(
-//   cors({
-//     origin: 'http://razdva.nomoreparties.sbs',
-//     exposedHeaders: 'Access-Control-Allow-Origin',
-//     credentials: true,
-//   }),
-// );
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://razdva.nomoreparties.sbs',
+    exposedHeaders: 'Access-Control-Allow-Origin',
+    credentials: true,
+  }),
+);
+// app.use(cors());
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');

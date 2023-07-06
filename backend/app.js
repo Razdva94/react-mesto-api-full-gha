@@ -39,7 +39,6 @@ app.use(
     credentials: true,
   }),
 );
-// app.use(cors());
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');

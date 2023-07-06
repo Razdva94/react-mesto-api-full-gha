@@ -85,7 +85,7 @@ class Api {
   }
 }
 const api = new Api({
-  baseUrl: "http://api.razdva.nomoreparties.sbs",
+  baseUrl: "https://api.razdva.nomoreparties.sbs",
   headers: {
     "Content-Type": "application/json",
   },

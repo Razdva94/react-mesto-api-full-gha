@@ -34,7 +34,7 @@ mongoose
 app.use(requestLogger);
 app.use(
   cors({
-    origin: 'http://razdva.nomoreparties.sbs',
+    origin: 'https://razdva.nomoreparties.sbs',
     exposedHeaders: 'Access-Control-Allow-Origin',
     credentials: true,
   }),

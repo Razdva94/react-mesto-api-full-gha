@@ -1,10 +1,11 @@
 const jwt = require('jsonwebtoken');
 const NotFound = require('./NotFoundError');
+require('dotenv').config();
 
 exports.auth = (req, res, next) => {
   const token = req.cookies.jwt;
   if (!token) {
-    next(new NotFound('Необходима авторизаци'));
+    next(new NotFound('Необходима авторизация'));
     return;
   }
   let payload;
@@ -16,7 +17,29 @@ exports.auth = (req, res, next) => {
       NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
     );
   } catch (err) {
-    next(new NotFound('Необходима авторизаця'));
+    next(new NotFound('Необходима авторизация'));
+    return;
+  }
+  req.user = payload;
+  next();
+};
+
+exports.auth = (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (!token) {
+    next(new NotFound('Необходима авторизация'));
+    return;
+  }
+  let payload;
+  try {
+    const { NODE_ENV, JWT_SECRET } = process.env;
+    console.log(NODE_ENV, JWT_SECRET);
+    payload = jwt.verify(
+      token,
+      NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+    );
+  } catch (err) {
+    next(new NotFound('Необходима авторизация'));
     return;
   }
   req.user = payload;

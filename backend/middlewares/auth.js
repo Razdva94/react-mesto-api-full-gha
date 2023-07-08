@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const NotFound = require('./NotFoundError');
+const NotFound = require('./UnauthorizedError');
 require('dotenv').config();
 
 exports.auth = (req, res, next) => {

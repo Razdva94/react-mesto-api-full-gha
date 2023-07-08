@@ -44,7 +44,7 @@ exports.deleteCard = async (req, res, next) => {
       next(new AccessError('Ошибка доступа'));
       return;
     }
-    await Card.deleteOne({ _id: cardId });
+    await card.deleteOne({ _id: cardId });
     res.status(200).json(card);
   } catch (error) {
     if (error.name === 'CastError') {

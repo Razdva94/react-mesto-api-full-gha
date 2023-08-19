@@ -66,5 +66,4 @@ const authApi = new AuthApi({
     "Content-Type": "application/json",
   },
 });
-
 export default authApi;

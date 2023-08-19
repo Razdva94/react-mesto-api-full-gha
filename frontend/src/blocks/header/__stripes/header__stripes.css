@@ -1,0 +1,13 @@
+.header__stripes {
+  display: block;
+  margin-right: 30px;
+  margin-left: auto;
+  z-index: 4;
+  display: none;
+}
+
+@media screen and (max-width: 528px) {
+  .header__stripes {
+    display: block;
+  }
+}

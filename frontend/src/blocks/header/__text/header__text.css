@@ -13,3 +13,9 @@
   opacity: .6;
   cursor: pointer;
 }
+
+@media screen and (max-width: 528px) {
+  .header__text {
+    margin: auto 30px auto auto;
+  }
+}

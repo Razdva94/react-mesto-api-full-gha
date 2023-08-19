@@ -8,3 +8,9 @@
   color: white;
   margin: auto 24px auto auto;
 }
+
+@media screen and (max-width: 528px) {
+  .header__email {
+    display: none;
+  }
+}

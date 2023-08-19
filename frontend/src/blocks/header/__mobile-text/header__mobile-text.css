@@ -1,0 +1,18 @@
+.header__mobile-text{
+color: #A9A9A9;
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: 22px; 
+text-align: center;
+margin: 0;
+padding-top: 18px;
+padding-bottom: 40px;
+display: none;
+}
+
+@media screen and (max-width: 528px) {
+  .header__mobile-text {
+    display: block;
+  }
+}

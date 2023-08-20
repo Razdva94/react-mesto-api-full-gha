@@ -9,8 +9,8 @@
 ![API](https://img.shields.io/badge/-api-yellow)
 ![BEM](https://img.shields.io/badge/-BEM-yellowgreen)
 ![MongoDB](https://img.shields.io/badge/MongoDB-brightgreen?logo=mongoDB)
-
-
+![Express](https://img.shields.io/badge/express-white?logo=express&logoColor=black)
+![Node.js](https://img.shields.io/badge/Node.js-green?logo=node.js&logoColor=black)
 
 
 ## Описание
